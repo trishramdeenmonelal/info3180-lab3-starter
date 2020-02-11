@@ -36,6 +36,11 @@ def contact():
         subject= request.form['subject']
         message= request.form['message']
         
+        
+        msg= Message(request.form['subject'], sender=(request.form['name'], request.form['email']), recipients=["shawn.ramdeen16@gmail.com"])
+        msg.body= 'This is the body of the message'
+        mail.send(msg)
+        flash("Flash M")
         return redirect(url_for('home'))
     return render_template('contact.html', form = form)  
     
